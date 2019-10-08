@@ -1,0 +1,21 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xiaoguangdong999/auction-store_1.0.0_TEST_2019_09_26
+          search-paths:
+            - config
+      label: master
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8901/eureka/
+
+

@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: tmp_luyi
+    password: 123456luyi
+    url: jdbc:mysql://cdb-kvwt5r3g.bj.tencentcdb.com:10193/auction_store?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false

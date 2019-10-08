@@ -1,0 +1,16 @@
+server:
+  port: 8806
+
+spring:
+  application:
+    name: good
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:9001/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8901/eureka/
