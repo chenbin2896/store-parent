@@ -17,5 +17,8 @@
 ## auction-store-pay  支付中心
 ### port： 8816-8820
 
+## auction-store-pay  认证中心
+### port： 8821-8825
+
 ## zuul-server  网关
 ### port: 8701-8705

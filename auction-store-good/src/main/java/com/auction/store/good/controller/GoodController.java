@@ -28,6 +28,11 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
+    @RequestMapping("/test")
+    public String test  () {
+        return "sdfa";
+    }
+
     @ApiOperation("查询商品-我的收藏")
     @GetMapping("select/good/favorite/{uid}/{date}")
     public Response<List<Good>> selectFavoriteGood (@PathVariable("uid") Integer uid,

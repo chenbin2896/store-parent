@@ -12,6 +12,7 @@
         <module>auction-store-eureka</module>
         <module>auction-store-zuul</module>
         <module>auction-store-common</module>
+        <module>auction-store-idcard</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
