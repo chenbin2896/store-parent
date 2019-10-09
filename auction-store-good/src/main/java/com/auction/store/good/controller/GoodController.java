@@ -7,10 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -27,11 +24,6 @@ public class GoodController {
 
     @Autowired
     private GoodService goodService;
-
-    @RequestMapping("/test")
-    public String test  () {
-        return "sdfa";
-    }
 
     @ApiOperation("查询商品-我的收藏")
     @GetMapping("select/good/favorite/{uid}/{date}")
@@ -51,6 +43,20 @@ public class GoodController {
     public Response<Good> insertFavoriteGood (@PathVariable("uid")  Integer uid, @PathVariable("gid") Integer gid) {
         return goodService.insertFavorite(uid, gid);
     }
+
+    @ApiOperation("我的拍品")
+    @GetMapping("select/good/bidding/{uid}/{status}")
+    public Response<List<Good>> insertFavoriteGood (@PathVariable("uid")  Integer uid, @PathVariable("status") String status) {
+        return goodService.biddingGood(uid, status);
+    }
+
+    @ApiOperation("保存商品")
+    @PostMapping("insert/good")
+    public Response<Good> insertGood (@RequestBody Good good) {
+        return goodService.insert(good);
+    }
+
+
 
 
 

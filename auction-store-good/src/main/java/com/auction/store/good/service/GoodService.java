@@ -57,13 +57,13 @@ public class GoodService {
     }
 
     /**
-     * 添加商品
-     * @param user
+     * 保存商品
+     * @param good
      * @return
      */
-    public Response<Good> insert (Good user) {
+    public Response<Good> insert (Good good) {
         try{
-            return Response.success(goodDao.save(user));
+            return Response.success(goodDao.save(good));
         }catch (Exception e) {
             return Response.failed(e.getMessage());
         }
@@ -137,5 +137,23 @@ public class GoodService {
         }
     }
 
+    /**
+     * 我的拍品
+     * @param uid
+     * @param status
+     * @return
+     */
+    public Response<List<Good>> biddingGood (Integer uid, String status) {
+        try {
+            Good good = new Good();
+            good.setUid(uid);
+            good.setGoodStatus(status);
+            Example<Good> example =  Example.of(good);
+            List<Good> goodList = goodDao.findAll(example);
+            return Response.success(goodList);
+        } catch (Exception e) {
+            return Response.failed(e.getMessage());
+        }
+    }
 
 }
