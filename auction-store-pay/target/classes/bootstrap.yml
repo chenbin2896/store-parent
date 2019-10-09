@@ -1,9 +1,9 @@
 server:
-  port: 8821
+  port: 8816
 
 spring:
   application:
-    name: card
+    name: pay
   cloud:
     config:
       label: master
