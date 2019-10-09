@@ -1,0 +1,11 @@
+server:
+  port: 8826
+
+spring:
+  application:
+    name: message
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8901/eureka/
