@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/xiaoguangdong999/auction-store_1.0.0_TEST_2019_09_26
+          uri: https://github.com/xiaoguangdong999/store-parent
           search-paths:
             - config
       label: master
