@@ -16,5 +16,5 @@ import javax.xml.ws.Response;
 public interface UserClient {
 
     @GetMapping(value = "/select/user/info/{uid}")
-    public Response<User> selectUserInfo(@PathVariable("uid") Integer uid)
+    Response<User> selectUserInfo(@PathVariable("uid") Integer uid);
 }
