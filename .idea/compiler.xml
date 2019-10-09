@@ -12,8 +12,10 @@
         <module name="auction-store-zuul" />
         <module name="auction-store-common" />
         <module name="auction-store-pay" />
+        <module name="auction-store-message" />
         <module name="auction-store-eureka" />
         <module name="auction-store-good" />
+        <module name="auction-store-web" />
         <module name="auction-store-config" />
       </profile>
     </annotationProcessing>
@@ -26,8 +28,10 @@
       <module name="auction-store-eureka" options="-parameters" />
       <module name="auction-store-good" options="-parameters" />
       <module name="auction-store-idcard" options="-parameters" />
+      <module name="auction-store-message" options="-parameters" />
       <module name="auction-store-order" options="-parameters" />
       <module name="auction-store-pay" options="-parameters" />
+      <module name="auction-store-web" options="-parameters" />
       <module name="auction-store-zuul" options="-parameters" />
       <module name="store-parent" options="-parameters" />
     </option>

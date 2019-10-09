@@ -13,6 +13,8 @@
         <module>auction-store-zuul</module>
         <module>auction-store-common</module>
         <module>auction-store-idcard</module>
+        <module>auction-store-message</module>
+        <module>auction-store-web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -53,6 +55,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
         </dependency>
 
         <!--整合swagger -->

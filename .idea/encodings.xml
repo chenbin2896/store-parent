@@ -8,8 +8,10 @@
     <file url="file://$PROJECT_DIR$/auction-store-eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auction-store-good" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auction-store-idcard" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auction-store-message" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auction-store-order" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auction-store-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auction-store-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auction-store-zuul" charset="UTF-8" />
   </component>
 </project>
