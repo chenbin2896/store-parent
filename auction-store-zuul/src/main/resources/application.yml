@@ -16,5 +16,11 @@ zuul:
     good:
       path: /good/**
       serviceId: good
+    chat:
+      path: /chat/**
+      serviceId: chat
+    order:
+      path: /order/**
+      serviceId: order
 
   ignored-services: card
