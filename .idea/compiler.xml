@@ -12,8 +12,8 @@
         <module name="auction-store-zuul" />
         <module name="auction-store-common" />
         <module name="auction-store-pay" />
-        <module name="auction-store-message" />
         <module name="auction-store-eureka" />
+        <module name="auction-store-message" />
         <module name="auction-store-good" />
         <module name="auction-store-web" />
         <module name="auction-store-config" />
