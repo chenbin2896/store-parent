@@ -19,10 +19,14 @@
         <module name="auction-store-config" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auction-store-alipay" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auction-store-account" options="-parameters" />
+      <module name="auction-store-alipay" options="-parameters" />
       <module name="auction-store-common" options="-parameters" />
       <module name="auction-store-config" options="-parameters" />
       <module name="auction-store-eureka" options="-parameters" />

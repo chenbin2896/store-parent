@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +56,7 @@ public class UserController {
 
     @ApiOperation("用户注册")
     @PostMapping("insert/register/{code}")
-    public Response<User> insertRegister (@ApiParam(value = "验证码") @PathVariable("code") String code, @RequestBody User user) {
+    public Response<User> insertRegister (@ApiParam(value = "验证码") @PathVariable("code") String code, @RequestBody User user, HttpSession session) {
         User userE = new User();
         userE.setTel(user.getTel());
         userE.setUsername(user.getUsername());
@@ -67,7 +68,10 @@ public class UserController {
         if( code == null || code.length() == 0 ){
             return Response.failed("验证码为空");
         }
-        if (map.get(user.getTel()) != null && map.get(user.getTel()).equals(code)) {
+        System.out.println(user.getTel()+"--------");
+        System.out.println(session.getAttribute(user.getTel()));
+        if (session.getAttribute(user.getTel())!=null && session.getAttribute(user.getTel()).equals(code)) {
+            session.removeAttribute(user.getTel());
             return userService.insert(user);
         }else {
             return Response.failed("验证码错误");
@@ -76,8 +80,8 @@ public class UserController {
     }
 
     @ApiOperation("获取验证码")
-    @GetMapping(value = "/get/code/{tel}")
-    public Response<String> sendCode (String tel) {
+    @GetMapping(value = "get/code/{tel}")
+    public Response<String> sendCode (@ApiParam(value = "手机号") @PathVariable("tel") String tel, HttpSession session) {
         String code = TestCode.getCode();
         String url = "http://v.juhe.cn/sms/send?mobile=" + tel + "&tpl_id=188494&tpl_value=%23code%23%3d" + code+"&key=ff55f3176ca70a91101a31088836fba8";
         RestTemplate restTemplate = new RestTemplate();
@@ -85,7 +89,8 @@ public class UserController {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String reason = (String) jsonObject.get("reason");
         if (reason.equals("操作成功")) {
-            map.put(tel,code);
+            session.setAttribute(tel,code);
+            System.out.println(session.getAttribute(tel)+"sdfsadf");
             return Response.success(code);
         }else {
             return Response.failed("获取验证码失败");

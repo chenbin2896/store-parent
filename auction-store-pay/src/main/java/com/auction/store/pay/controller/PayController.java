@@ -8,6 +8,7 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.auction.store.pay.config.AlipayConfig;
+import com.auction.store.pay.pojo.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pojo.Response;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class PayController {
 
     @ApiOperation("订单支付")
     @GetMapping("create/{WIDout_trade_no}/{WIDtotal_amount}/{WIDsubject}/{WIDbody}")
-    public Response<String> pay(@ApiParam(value = "商户订单号", required = true) @PathVariable("WIDout_trade_no") String WIDout_trade_no,
+    public String pay(@ApiParam(value = "商户订单号", required = true) @PathVariable("WIDout_trade_no") String WIDout_trade_no,
                                 @ApiParam(value = "付款金额", required = true) @PathVariable("WIDtotal_amount") String WIDtotal_amount,
                                 @ApiParam(value = "订单名称", required = true) @PathVariable("WIDsubject") String WIDsubject,
                                 @ApiParam(value = "商品描述", required = true) @PathVariable("WIDbody") String WIDbody) {
@@ -65,9 +65,9 @@ public class PayController {
 
         try {
             String result = alipayClient.pageExecute(alipayRequest).getBody();
-            return Response.success(result);
+            return result;
         } catch (AlipayApiException e) {
-            return Response.failed(e.getMessage());
+            return "支付失败";
         }
     }
 
