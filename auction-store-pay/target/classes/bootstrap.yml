@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: pay
-  cloud:
-    config:
-      label: master
-      profile: dev
-      uri: http://localhost:9001/
 
 eureka:
   client:

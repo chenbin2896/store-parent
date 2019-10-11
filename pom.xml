@@ -15,6 +15,7 @@
         <module>auction-store-idcard</module>
         <module>auction-store-message</module>
         <module>auction-store-web</module>
+        <module>auction-store-alipay</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

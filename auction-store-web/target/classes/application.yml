@@ -1,2 +1,7 @@
 server:
   port: 8850
+
+spring:
+  mvc:
+    favicon:
+      enabled: false
