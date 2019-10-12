@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要开店</title>
+    <!-- =====  MOBILE SPECIFICATION  ===== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width">
+    <!-- =====  CSS  ===== -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+</head>
+<!-- header -->
+<div id="header"></div>
+<!-- header -->
+<!-- container -->
+<div class="container">
+    <!-- login -->
+    <div id="login" style="padding:  100px 400px;">
+        <h3 style="padding-bottom: 80px;">欢迎登录</h3>
+        <form>
+            <div class="form-group">
+                <label for="tel">手机号</label>
+                <input type="text" class="form-control" id="tel" placeholder="手机号">
+            </div>
+            <div class="form-group">
+                <label for="r_code">验证码</label><br>
+                <input type="password" style="width: 50%;" class="form-control" id="r_code" placeholder="请输入验证码">
+                <button type="button" class="btn btn-default">获取验证码</button>
+
+            </div>
+            <div class="form-group">
+                <label for="pasword">密码</label>
+                <input type="password" class="form-control" id="pasword" placeholder="密码">
+            </div>
+
+            <div class="form-group">
+                <label for="idcardPhoto">上传身份证</label>
+                <input type="file" id="idcardPhoto">
+                <p class="help-block">请上传身份证正面照，大小不超过2M</p>
+            </div>
+            <div class="form-group">
+                <label for="idcard">身份证号</label>
+                <input type="password" readonly class="form-control" id="idcard" placeholder="身份证号">
+            </div>
+            <div class="form-group">
+                <label for="realname">姓名</label>
+                <input type="password" readonly class="form-control" id="realname" placeholder="姓名">
+            </div>
+            <div class="form-group">
+                <label for="sex">性别</label>
+                <input type="password" readonly class="form-control" id="sex" placeholder="性别">
+            </div>
+            <div class="form-group">
+                <label for="address">地址</label>
+                <input type="password" readonly class="form-control" id="address" placeholder="地址">
+            </div>
+            <button type="button" class="btn btn-default" onclick="submitAccount()">提交信息</button>
+        </form>
+    </div>
+    <!-- login -->
+</div>
+<!-- container -->
+<!-- footer -->
+<div id="footer"></div>
+<!-- footer -->
+</body>
+<script src="js/jQuery_v3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="common.js"></script>
+<script>
+    function submitAccount() {
+        alert("您的信息已提交，需3-5个工作日审核")
+    }
+</script>
+</html>

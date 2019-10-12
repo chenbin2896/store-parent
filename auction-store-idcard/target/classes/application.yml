@@ -1,0 +1,11 @@
+server:
+  port: 8821
+
+spring:
+  application:
+    name: card
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8901/eureka/

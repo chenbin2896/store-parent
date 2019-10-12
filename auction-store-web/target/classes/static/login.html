@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录注册 </title>
+    <!-- =====  MOBILE SPECIFICATION  ===== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width">
+    <!-- =====  CSS  ===== -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+</head>
+<body>
+<!-- header -->
+<div id="header"></div>
+<!-- header -->
+<!-- container -->
+<div class="container">
+    <!-- login -->
+    <div id="login" style="padding:  100px 500px;">
+        <h3 style="padding-bottom: 80px;">欢迎登录</h3>
+        <form>
+            <div class="form-group">
+                <label for="tel">手机号</label>
+                <input type="text" class="form-control" id="tel" placeholder="手机号">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" placeholder="密码">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 记住我
+                </label>
+            </div>
+            <button type="button" class="btn btn-default" onclick="login()">立即登录</button>
+            <button type="button" class="btn btn-default" onclick="showRegis()">注册账号</button>
+        </form>
+    </div>
+    <!-- login -->
+    <!-- register -->
+    <div id="register" style="padding:  100px 500px;display: none">
+        <h3 style="padding-bottom: 80px;">欢迎注册</h3>
+        <form>
+            <div class="form-group">
+                <label for="r_tel">手机号</label>
+                <input type="text" class="form-control" id="r_tel" placeholder="手机号">
+            </div>
+            <div class="form-group">
+                <label for="r_code">验证码</label><br>
+                <input type="password" style="width: 50%;" class="form-control" id="r_code" placeholder="请输入验证码">
+                <input type="button" id="yzm" disabled="disabled" class="btn btn-default" value="获取验证码">
+
+            </div>
+            <div class="form-group">
+                <label for="r_pasword">密码</label>
+                <input type="password" class="form-control" id="r_pasword" placeholder="密码">
+            </div>
+            <div class="form-group">
+                <label for="r_pasword2">确认密码</label>
+                <input type="password" class="form-control" id="r_pasword2" placeholder="确认密码">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> 记住我
+                </label>
+            </div>
+            <button type="button" class="btn btn-default" onclick="regis()">立即注册</button>
+            <button type="button" class="btn btn-default" onclick="showLogin()">去登录</button>
+        </form>
+    </div>
+    <!-- register -->
+</div>
+<!-- container -->
+<!-- footer -->
+<div id="footer"></div>
+<!-- footer -->
+</body>
+<script src="js/jQuery_v3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="common.js"></script>
+<script>
+    $(function () {
+        var ordertime=60   //设置再次发送验证码等待时间
+        var timeleft=ordertime
+        var btn=$("#yzm")
+        var phone=$("#r_tel")
+        var reg = /^1[0-9]{10}$/;  //电话号码的正则匹配式
+
+        phone.keyup(function(){
+            if (reg.test(phone.val())){
+                btn.removeAttr("disabled")  //当号码符合规则后发送验证码按钮可点击
+            }
+            else{
+                btn.attr("disabled",true)
+            }
+        })
+
+        //计时函数
+        function timeCount(){
+            timeleft-=1
+            if (timeleft>0){
+                btn.val(timeleft+" 秒后重发");
+                setTimeout(timeCount,1000)
+            }
+            else {
+                btn.val("重新发送");
+                timeleft=ordertime   //重置等待时间
+                btn.removeAttr("disabled");
+            }
+        }
+
+        //事件处理函数
+        btn.on("click",function(){
+            var tel = $("#r_tel").val();
+            $(this).attr("disabled",true); //防止多次点击
+            axios.get("http://localhost:8701/account/v1/user/get/code/"+tel)
+                .then(function (value) {
+                    console.log(value);
+                    alert("验证码已发送");
+                })
+                .catch(function (reason) {
+                    alert("验证码发送失败");
+                });
+            timeCount(this);
+        })
+
+    });
+
+    //登录
+    function login() {
+        var tel = $("#tel").val();
+        var password = $("#password").val();
+        axios.get("http://localhost:8701/account/v1/user/login/"+tel+"/"+password)
+            .then(function (value) {
+                location.href='index.html?uid='+value.data.data.id+'&username='+value.data.data.username;
+            })
+            .catch(function (reason) {
+                alert("登录失败");
+            });
+    }
+    //注册
+    function regis() {
+        var tel = $("#r_tel").val();
+        var password = $("#r_password").val();
+        var code = $("#r_code").val();
+        axios.post("http://localhost:8701/account/v1/user/insert/register/"+code,{
+            username:'',
+            tel: tel,
+            password: password
+        }).then(function (value) {
+               if (value.data.data.code == 0) {
+                   alert("注册成功");
+               }else {
+                   alert(value.data.data.msg);
+               }
+
+            })
+            .catch(function (reason) {
+                console.log(reason)
+                alert("注册失败");
+            });
+    }
+    //显示登录框
+    function showLogin() {
+        $("#login").css('display','block');
+        $("#register").css('display','none');
+    }
+    //显示注册框
+    function showRegis() {
+        $("#login").css('display','none');
+        $("#register").css('display','block');
+    }
+</script>
+</html>
