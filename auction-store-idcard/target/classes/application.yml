@@ -1,11 +1,16 @@
 server:
-  port: 8821
+  port: 8701
 
 spring:
   application:
     name: card
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 100MB
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8901/eureka/
+

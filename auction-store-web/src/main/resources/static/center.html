@@ -160,8 +160,10 @@
 
     <!--身份认证-->
     <div class="id-card">
-        <input type="file" name="file" onchange="findMyFavorite(this)" />
-        <img id="portrait" src="" style="display:none;" />
+        <label>点击图片上传</label>
+        <img id="headPic" src="images/breadcrumb.jpg"  width="150px" height="150px" style="padding: 5px">
+        <input id="upload" name="file" type="file">
+        <button id="submit_btn" type="submit">确定修改</button>
     </div>
 </div>
 <!-- container -->
@@ -170,8 +172,10 @@
 <!-- footer -->
 </body>
 <script src="js/jQuery_v3.1.1.min.js"></script>
+<script src="js/ajaxfileupload.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
 <script src="common.js"></script>
 <script>
     //显示div
@@ -193,11 +197,46 @@
         }
     }
 
-    //查询我的收藏
-    function findMyFavorite(uid) {
 
+    //头像预览
+    $("#headPic").click(function () {
+        $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+        $("#upload").on("change",function(){
+            var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
+            if (objUrl) {
+                $("#headPic").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+            }
+        });
+    });
+
+    //图片上传
+    $("#submit_btn").click(function () {
+
+        var file = $("#upload")[0].files; //获取input的图片file值
+        let param = new FormData(); // 创建form对象
+        param.append('file', file[0]);//对应后台接收图片名
+        axios.post('http://xixi.natapp4.cc/v1/card/upload',param)
+            .then(function(res){
+                console.log(res);
+            })
+            .catch(function(error){
+                alert("无殴打")
+                console.log(error);
+            });
+    });
+
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null ;
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
     }
-
     //查询我的订单
     function findMyFavorite(uid) {
 

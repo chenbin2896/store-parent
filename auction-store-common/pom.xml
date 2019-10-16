@@ -10,11 +10,4 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>auction-store-common</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-    </dependencies>
-
 </project>
